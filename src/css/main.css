@@ -1,5 +1,9 @@
 .game {
-    width: 70%;
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5rem auto;
     flex-direction: column;
 }
 
@@ -15,7 +19,7 @@
 .card {
     width: 7rem;
     height: 9rem;
-    color: darkblue;
+    color: rgb(7, 7, 7);
     font-size: 40px;
     font-weight: 700;
     border-radius: 5px;
