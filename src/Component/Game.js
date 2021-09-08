@@ -13,7 +13,7 @@ class Game extends React.Component {
             cardClicked: [],
             prevCard: -1,
             prevCardId: -1,
-            button: 'click cards!'
+            startButton: 'click cards!'
         }
 
         this.handleClick = this.handleClick.bind(this);
@@ -44,7 +44,6 @@ class Game extends React.Component {
         e.preventDefault();
         const card = e.target;
         const cardId = e.target.id;
-        //const contents = this.state.contents;
         const openedCardsArr = this.state.openedCards.slice(0);
         const cardClicked = this.state.cardClicked;
 
@@ -101,8 +100,8 @@ class Game extends React.Component {
             
             if( !openedCardsArr[card1Id] && !openedCardsArr[card2Id]){
                 this.cardClosed(card1, card2);
-
             }
+
             this.setState({ 
                 cardClicked: [],
             }); 
@@ -111,13 +110,12 @@ class Game extends React.Component {
 
         if(openedCardsArr.every( item => item === true)){
             this.setState({
-                button: 'Congratulations!'
+                startButton: 'Congratulations! click me to play again!'
             })
         }
     }
 
     startGame(){
-       
         const cards = document.querySelectorAll('.card');
         cards.forEach( card => {
                 card.style.backgroundColor = 'hsl(195, 61%, 78%)';
@@ -130,7 +128,7 @@ class Game extends React.Component {
             cardClicked: [],
             prevCard: -1,
             prevCardId: -1,
-            button: "click cards!"
+            startButton: "click cards!"
         })
     }
 
@@ -140,7 +138,7 @@ class Game extends React.Component {
             <div className='game'>
                 <Board contents={this.state.contents} onClick={this.handleClick} openedCards={this.state.openedCards} cardId={this.state.prevCardId} />
                 <div className='start'>
-                    <button className='startBtn' onClick={this.startGame}>{this.state.button}</button>
+                    <button className='startBtn' onClick={this.startGame}>{this.state.startButton}</button>
                 </div>
             </div>
 
