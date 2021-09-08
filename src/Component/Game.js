@@ -12,11 +12,13 @@ class Game extends React.Component {
             openedCards: Array(16).fill(false),
             cardClicked: [],
             prevCard: -1,
-            prevCardId: -1
+            prevCardId: -1,
+            button: 'click cards!'
         }
 
         this.handleClick = this.handleClick.bind(this);
         this.generateContents = this.generateContents.bind(this);
+        this.startGame = this.startGame.bind(this);
         
     }
 
@@ -56,7 +58,7 @@ class Game extends React.Component {
                 cardClicked: cardClicked,
                 prevCard: prevState.contents[cardId],
                 prevCardId: cardId,
-
+               
             }
         });
 
@@ -106,6 +108,30 @@ class Game extends React.Component {
             }); 
 
         }
+
+        if(openedCardsArr.every( item => item === true)){
+            this.setState({
+                button: 'Congratulations!'
+            })
+        }
+    }
+
+    startGame(){
+       
+        const cards = document.querySelectorAll('.card');
+        cards.forEach( card => {
+                card.style.backgroundColor = 'hsl(195, 61%, 78%)';
+                card.innerText = '';
+        })
+
+        this.setState({
+            contents: this.generateContents(8),
+            openedCards: Array(16).fill(false),
+            cardClicked: [],
+            prevCard: -1,
+            prevCardId: -1,
+            button: "click cards!"
+        })
     }
 
     render(){
@@ -113,6 +139,9 @@ class Game extends React.Component {
         return(
             <div className='game'>
                 <Board contents={this.state.contents} onClick={this.handleClick} openedCards={this.state.openedCards} cardId={this.state.prevCardId} />
+                <div className='start'>
+                    <button className='startBtn' onClick={this.startGame}>{this.state.button}</button>
+                </div>
             </div>
 
         )
