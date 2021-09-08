@@ -1,0 +1,20 @@
+.card-wrap {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5rem auto;
+    flex-flow: row wrap;
+}
+
+.card {
+    width: 7rem;
+    height: 9rem;
+    color: darkblue;
+    font-size: 40px;
+    font-weight: 700;
+    border-radius: 5px;
+    background-color: hsl(195, 61%, 78%);
+    margin: 1rem;
+    border: none;
+}
