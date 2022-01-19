@@ -8,8 +8,8 @@ class Game extends React.Component {
         super(props);
 
         this.state = {
-            contents: this.generateContents(8),
-            openedCards: Array(16).fill(false),
+            contents: this.generateContents(12),
+            openedCards: Array(24).fill(false),
             cardClicked: [],
             prevCard: -1,
             prevCardId: -1,
@@ -33,7 +33,6 @@ class Game extends React.Component {
     }
 
     cardClosed(card1, card2){
-        
         card1.style.backgroundColor = 'hsl(195, 61%, 78%)';
         card1.innerText = '';
         card2.style.backgroundColor = 'hsl(195, 61%, 78%)';
@@ -123,8 +122,8 @@ class Game extends React.Component {
         })
 
         this.setState({
-            contents: this.generateContents(8),
-            openedCards: Array(16).fill(false),
+            contents: this.generateContents(12),
+            openedCards: Array(24).fill(false),
             cardClicked: [],
             prevCard: -1,
             prevCardId: -1,

@@ -1,3 +1,7 @@
+body {
+    background-color: hsl(120, 74%, 88%);
+}
+
 .game {
     width: 65%;
     display: flex;
