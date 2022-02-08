@@ -1,61 +1,26 @@
 import React from 'react';
 import '../css/main.css';
 import Board from '../Component/Board';
+import {generateContents} from '../Component/Calc';
 
-const bgColors = [
-    'hsl(25, 85%, 65%)',
-    'hsl(55, 85%, 65%)',
-    'hsl(90, 85%, 65%)',
-    'hsl(160, 85%, 65%)',
-    'hsl(220, 85%, 65%)',
-    'hsl(265, 85%, 65%)',
-    'hsl(310, 85%, 65%)',
-    'hsl(360, 85%, 65%)',
-    'hsl(25, 502%, 65%)',
-    'hsl(55, 50%, 65%)',
-    'hsl(90, 50%, 65%)',
-    'hsl(160, 50%, 65%)'
-];
-
-function generateContents(colorArr){
-    
-    const numberArray = [];
-    for(let i=0; i<colorArr.length; i++){
-       
-        numberArray.push( [ i + 1, colorArr[i]], [ i + 1, colorArr[i]] );
-    }
-    
-    for (var i = numberArray.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = numberArray[i];
-        numberArray[i] = numberArray[j];
-        numberArray[j] = temp;
-    }
-    return numberArray;
-};
-
-class Game extends React.Component {
-    constructor(props){
-        super(props);
-
-        this.state = {
-            contents: this.generateContents(bgColors),
-            openedCards: Array(bgColors.length*2).fill(false),
+const numArray = generateContents();
+const initialState = {
+            contents: numArray,
+            openedCards: Array(numArray.length).fill(false),
             cardClicked: [],
             prevCard: -1,
             prevCardId: -1,
             startButton: 'click cards!'
-        }
+};
+class Game extends React.Component {
+    constructor(props){
+        super(props);
+
+        this.state = initialState;
 
         this.handleClick = this.handleClick.bind(this);
-        this.generateContents = this.generateContents.bind(this);
         this.startGame = this.startGame.bind(this);
         
-    }
-
-    generateContents(bgColors){
-        const contents = generateContents(bgColors);
-        return contents;
     }
 
     openCard(id, el){
@@ -152,14 +117,7 @@ class Game extends React.Component {
                 card.innerText = '';
         })
 
-        this.setState({
-            contents: this.generateContents(bgColors),
-            openedCards: Array(bgColors.length*2).fill(false),
-            cardClicked: [],
-            prevCard: -1,
-            prevCardId: -1,
-            startButton: 'click cards!'
-        })
+        this.setState(initialState);
     }
 
     render(){
